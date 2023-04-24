@@ -47,7 +47,7 @@ def main():
 
     # create a download link for the generated data
     
-     with open(file_name, 'w', newline='', encoding='utf-8') as file:
+    with open(file_name, 'w', newline='', encoding='utf-8') as file:
         output = BytesIO()
         writer = csv.writer(file)
         writer.writerow(selected_providers)
