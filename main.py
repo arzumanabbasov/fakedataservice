@@ -45,14 +45,18 @@ def main():
     st.write('## Demo Table')
     st.write(pd.DataFrame(data).T.head(5))
 
-    # create a download link for the generated data
+        # generate the CSV data
+    csv_data = [selected_providers] + list(zip(*data))
+
+    # write CSV data to BytesIO object
     output = BytesIO()
-    with open(filename, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        writer.writerow(selected_providers)
-        writer.writerows(zip(*data))
-        output.seek(0)
-    st.download_button(label='Download CSV', data=output, file_name=filename, mime='text/csv')
+    writer = csv.writer(output, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    for row in csv_data:
+        writer.writerow(row)
+
+    # create a download link for the generated data
+    st.download_button(label='Download CSV', data=output.getvalue(), file_name=filename, mime='text/csv')
+
     
 
 
