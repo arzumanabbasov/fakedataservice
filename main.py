@@ -46,13 +46,14 @@ def main():
     st.write(pd.DataFrame(data).head())
 
     # create a download link for the generated data
-    output = BytesIO()
-    with open(filename, 'w', newline='', encoding='utf-8') as file:
+    
+     with open(file_name, 'w', newline='', encoding='utf-8') as file:
+        output = BytesIO()
         writer = csv.writer(file)
         writer.writerow(selected_providers)
-        writer.writerows(data)
+        writer.writerows(zip(*data))
         output.seek(0)
-    st.download_button(label='Download CSV', data=output, file_name=filename, mime='text/csv')
+        st.download_button(label='Download CSV', data=output, file_name=file_name, mime='text/csv')
 
 
 if __name__ == "__main__":
