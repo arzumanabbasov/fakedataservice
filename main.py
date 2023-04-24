@@ -2,6 +2,7 @@ import csv
 import pandas as pd
 import streamlit as st
 from faker import Faker
+from io import BytesIO
 
 fake = Faker('az_AZ')
 
