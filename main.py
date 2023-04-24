@@ -10,13 +10,13 @@ fake = Faker('az_AZ')
 def generate_fake_data(selected_providers, num_rows):
     data = []
 
-    # generate the data for each provider
-    for provider in selected_providers:
-        provider_func = getattr(fake, provider)
-        column_data = [provider.capitalize()]
-        for _ in range(num_rows):
-            column_data.append(provider_func())
-        data.append(column_data)
+    # generate the data for each row
+    for _ in range(num_rows):
+        row = []
+        for provider in selected_providers:
+            provider_func = getattr(fake, provider)
+            row.append(provider_func())
+        data.append(row)
 
     return data
 
@@ -43,19 +43,20 @@ def main():
 
     # display the demo table
     st.write('## Demo Table')
-    st.write(pd.DataFrame(data).T.head(5))
-
-        # generate the CSV data
-    csv_data = [selected_providers] + list(zip(*data))
-
-    # write CSV data to BytesIO object
-    output = BytesIO()
-    writer = csv.writer(output, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    for row in csv_data:
-        writer.writerow(row)
+    st.write(pd.DataFrame(data).head())
 
     # create a download link for the generated data
-    st.download_button(label='Download CSV', data=output.getvalue(), file_name=filename, mime='text/csv')
+    output = BytesIO()
+    with open(filename, 'w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(selected_providers)
+        writer.writerows(data)
+        output.seek(0)
+    st.download_button(label='Download CSV', data=output, file_name=filename, mime='text/csv')
+
+if __name__ == "__main__":
+    main()
+
 
     
 
