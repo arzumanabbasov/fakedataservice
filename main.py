@@ -53,7 +53,7 @@ def main():
         writer.writerow(selected_providers)
         writer.writerows(zip(*data))
         output.seek(0)
-        st.download_button(label='Download CSV', data=output, file_name=filename, mime='text/csv')
+    st.download_button(label='Download CSV', data=output, file_name=filename, mime='text/csv')
 
 
 if __name__ == "__main__":
