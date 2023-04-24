@@ -36,7 +36,7 @@ def main():
     num_rows = st.sidebar.number_input('Number of rows', value=10, min_value=1, max_value=10000)
 
     # get the file name from the user
-    file_name = st.text_input('Enter file name', value='fake_data.csv')
+    filename = st.text_input('Enter file name', value='fake_data.csv')
 
     # generate the fake data
     data = generate_fake_data(selected_providers, num_rows)
@@ -46,14 +46,13 @@ def main():
     st.write(pd.DataFrame(data).T.head(5))
 
     # create a download link for the generated data
-    
+    output = BytesIO()
     with open(file_name, 'w', newline='', encoding='utf-8') as file:
-        output = BytesIO()
         writer = csv.writer(file)
         writer.writerow(selected_providers)
         writer.writerows(zip(*data))
         output.seek(0)
-    st.download_button(label='Download CSV', data=output, file_name='fake_data.csv', mime='text/csv')
+    st.download_button(label='Download CSV', data=output, file_name=filename, mime='text/csv')
     
 
 
