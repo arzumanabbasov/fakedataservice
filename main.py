@@ -50,6 +50,8 @@ def main():
             writer = csv.writer(file)
             writer.writerow(selected_providers)
             writer.writerows(zip(*data))
+            output.seek(0)
+            st.download_button(label='Download CSV', data=output, file_name='fake_data.csv', mime='text/csv')
         st.success(f'Downloaded {file_name} with {num_rows} rows and {len(selected_providers)} columns.')
 
 
