@@ -47,6 +47,11 @@ def main():
     df = pd.DataFrame(data)
     st.write(df.head())
     if st.button("Download"):
+        progress_bar = st.progress(0)
+        for i in range(100):
+            time.sleep(0.03)
+            progress_bar.progress(i+1)
+        progress_bar.empty()
         csv = df.to_csv(index=False)
         b64 = base64.b64encode(csv.encode()).decode()
         href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV File</a>'
