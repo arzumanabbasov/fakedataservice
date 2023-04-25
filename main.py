@@ -37,7 +37,7 @@ def main():
     num_rows = st.sidebar.number_input('Number of rows', value=10, min_value=1, max_value=10000)
 
     # get the file name from the user
-    filename = st.text_input('Enter file name', value='', placeholder = "name of file", autocomplete=True)
+    filename = st.text_input('Enter file name', value='', placeholder = "name of file", autocomplete="default")
 
     # generate the fake data
     data = generate_fake_data(selected_providers, num_rows)
