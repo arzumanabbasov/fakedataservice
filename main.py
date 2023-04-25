@@ -51,8 +51,8 @@ def main():
         b64 = base64.b64encode(csv.encode()).decode()
         href = f'<a href="data:file/csv;base64,{b64}" download="{filename}.csv">Download CSV File</a>'
         st.markdown(href, unsafe_allow_html=True)
-        st.balloons()
 
 
 if __name__ == "__main__":
+    st.balloons()
     main()
