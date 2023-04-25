@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 from faker import Faker
 from io import BytesIO
+import base64
 
 fake = Faker('az_AZ')
 
