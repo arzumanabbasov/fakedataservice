@@ -49,7 +49,7 @@ def main():
     if st.button("Download"):
         progress_bar = st.progress(0)
         for i in range(100):
-            time.sleep(0.03)
+            time.sleep(3)
             progress_bar.progress(i+1)
         progress_bar.empty()
         csv = df.to_csv(index=False)
