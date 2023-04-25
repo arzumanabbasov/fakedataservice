@@ -46,7 +46,10 @@ def main():
     df = pd.DataFrame(data)
     st.write(df.head())
     if st.button("Download"):
-        df.to_csv(filename + ".csv")
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()
+        href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV File</a>'
+        st.markdown(href, unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
