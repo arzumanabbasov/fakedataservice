@@ -43,17 +43,10 @@ def main():
 
     # display the demo table
     st.write('## Demo Table')
-    st.write(pd.DataFrame(data).head())
-
-    # create a download link for the generated data
-    
-    with open(filename, 'w', newline='', encoding='utf-8') as file:
-        output = BytesIO()
-        writer = csv.writer(file)
-        writer.writerow(selected_providers)
-        writer.writerows(zip(*data))
-        output.seek(0)
-    st.download_button(label='Download CSV', data=output, file_name=filename, mime='text/csv')
+    df = pd.DataFrame(data)
+    st.write(df.head())
+    if st.button("Download"):
+        df.to_csv(filename + ".csv")
 
 
 if __name__ == "__main__":
