@@ -28,8 +28,7 @@ def main():
     all_providers = dir(fake)
 
     # define the available providers
-    available_providers = [p for p in all_providers if not p.startswith('_')]
-    available_providers[2] = None
+    available_providers = [p for p in all_providers if not p.startswith('_')].[2:]
    
     # create checkboxes for provider selection
     selected_providers = st.sidebar.multiselect('Select Columns', available_providers)
