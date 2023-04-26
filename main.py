@@ -29,7 +29,7 @@ def main():
 
     # define the available providers
     available_providers = [p for p in all_providers if not p.startswith('_')]
-    available_providers = available_providers.pop([2])
+    available_providers[2] = None
    
     # create checkboxes for provider selection
     selected_providers = st.sidebar.multiselect('Select Columns', available_providers)
