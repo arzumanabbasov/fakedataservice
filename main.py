@@ -53,8 +53,9 @@ def main():
         if filename != '':
             href = f'<a href="data:file/csv;base64,{b64}" download="{filename}.csv">Download CSV File</a>'
             st.markdown(href, unsafe_allow_html=True)
+            st.success("File Successfully Downloaded")
         else:
-            st.text(" You didn't entered file name")
+            st.error(" You didn't entered file name")
 
 
 if __name__ == "__main__":
