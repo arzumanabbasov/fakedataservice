@@ -1,5 +1,5 @@
 # Fake Data Service
-This is an app that generates fake data using the Faker library and allows the user to select the columns and number of rows of the data, as well as download the generated data as a CSV file. You can access the app at https://fakedataservice.streamlit.app.
+This is an app that generates fake data using the Faker library and allows the user to select the columns and number of rows of the data, as well as download the generated data as a CSV file. You can access the app at https://fakedataservice.streamlit.app
 
 To use the app, follow these steps:
 
